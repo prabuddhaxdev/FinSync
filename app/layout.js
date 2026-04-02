@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,11 +16,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.className}`}>
       <body className="min-h-full flex flex-col">
-        <ClerkProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </ClerkProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProvider>
+            <Header />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
