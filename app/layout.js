@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,6 +7,10 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const bricolage_grotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "FinSync",
   description: "Finance Dashboard",
@@ -14,21 +18,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.className}`}>
-      <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={` ${bricolage_grotesque.className} min-h-full flex flex-col antialiased`}
         >
-          <ClerkProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <Header />
             <main className="min-h-screen">{children}</main>
-            <Footer />
-          </ClerkProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

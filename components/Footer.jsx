@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="w-full py-12 px-4 bg-green-400 border-t border-green-800">
+    <footer className="w-full py-12 px-4 border-t">
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-center">
         <Link
           href="https://github.com/prabuddhaxdev/Zorvyn-Frontend-Assignment"
