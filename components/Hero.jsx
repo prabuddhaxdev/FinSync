@@ -79,7 +79,7 @@ const HeroSection = () => {
           >
             {/* Light mode image */}
             <Image
-              src="/hero-light.png"
+              src="/hero-dark.png"
               width={1280}
               height={720}
               alt="Dashboard Preview Light"

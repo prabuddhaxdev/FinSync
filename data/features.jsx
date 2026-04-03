@@ -9,7 +9,7 @@ import {
   Zap,
 } from "lucide-react";
 
-const features = [
+export const features = [
   {
     key: "item-1",
     icon: ScanLine,
