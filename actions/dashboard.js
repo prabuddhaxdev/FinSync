@@ -1,6 +1,6 @@
 "use server";
 
-// import aj from "@/lib/arcjet";
+import { checkUser } from "@/lib/checkUser";
 import { db } from "@/lib/prisma";
 import { request } from "@arcjet/next";
 import { auth } from "@clerk/nextjs/server";
@@ -18,16 +18,7 @@ const serializeTransaction = (obj) => {
 };
 
 export async function getUserAccounts() {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) {
-    throw new Error("User not found");
-  }
+const user = await checkUser();
 
   try {
     const accounts = await db.account.findMany({
@@ -59,7 +50,7 @@ export async function createAccount(data) {
     // Get request data for ArcJet
     const req = await request();
 
-    // Check rate limit
+    // // Check rate limit
     // const decision = await aj.protect(req, {
     //   userId,
     //   requested: 1, // Specify how many tokens to consume

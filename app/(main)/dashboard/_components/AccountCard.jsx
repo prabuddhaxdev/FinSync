@@ -51,13 +51,13 @@ export function AccountCard({ account }) {
   return (
     <Card
       className="
-      hover:shadow-lg transition-all duration-200 group relative
+      hover:shadow-lg transition-all duration-200 group relative flex flex-col h-full
       bg-white dark:bg-zinc-900
       border border-zinc-200 dark:border-zinc-800
       rounded-2xl overflow-hidden
     "
     >
-      <Link href={`/account/${id}`}>
+      <Link href={`/account/${id}`} className="flex flex-col flex-1">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 pt-5 px-5">
           <div className="flex flex-col gap-1">
             <p className="text-xs font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
@@ -86,7 +86,7 @@ export function AccountCard({ account }) {
         </CardContent>
 
         <CardFooter
-          className="
+          className=" mt-auto
           flex justify-between px-5 py-3
           border-t border-zinc-100 dark:border-zinc-800
           bg-zinc-50 dark:bg-zinc-800/50
