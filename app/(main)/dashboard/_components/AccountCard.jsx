@@ -51,13 +51,15 @@ export function AccountCard({ account }) {
   return (
     <Card
       className="
-      hover:shadow-lg transition-all duration-200 group relative
-      bg-white dark:bg-zinc-900
-      border border-zinc-200 dark:border-zinc-800
-      rounded-2xl
-    "
+        h-48 flex flex-col justify-between
+        hover:shadow-lg hover:-translate-y-1 transition-all duration-200
+        bg-white dark:bg-zinc-900
+        border border-zinc-200 dark:border-zinc-800
+        rounded-2xl
+      "
     >
-      <Link href={`/account/${id}`}>
+      <Link href={`/account/${id}`} className="flex flex-col h-full">
+        {/* Header */}
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 px-5">
           <div className="flex flex-col gap-1">
             <p className="text-xs font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
@@ -67,6 +69,7 @@ export function AccountCard({ account }) {
               {name}
             </CardTitle>
           </div>
+
           <Switch
             checked={isDefault}
             onClick={handleDefaultChange}
@@ -74,26 +77,28 @@ export function AccountCard({ account }) {
           />
         </CardHeader>
 
-        <CardContent className="px-5 pb-4">
-          <div className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            ${parseFloat(balance).toFixed(2)}
+        {/* Content */}
+        <CardContent className="px-5 pb-4 flex-1 flex flex-col justify-between">
+          <div>
+            <div className="text-2xl sm:text-3xl font-semibold">
+              ${parseFloat(balance).toFixed(2)}
+            </div>
           </div>
-          {isDefault && (
-            <span className="mt-1 inline-block text-xs font-medium text-green-600 dark:text-green-400">
-              ✦ Default Account
-            </span>
-          )}
+
+          <div className="h-4">
+            {isDefault && (
+              <span className="text-xs text-green-500">✦ Default Account</span>
+            )}
+          </div>
         </CardContent>
 
-        <CardFooter
-          className="
-          flex justify-between
-        "
-        >
-          <div className="flex items-center mt-3">
+        {/* Footer */}
+        <CardFooter className="px-5 pb-2 flex justify-between text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="flex items-center">
             <ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
             Income
           </div>
+
           <div className="flex items-center">
             <ArrowDownRight className="mr-1 h-4 w-4 text-red-500" />
             Expense

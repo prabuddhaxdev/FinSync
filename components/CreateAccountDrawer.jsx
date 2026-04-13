@@ -78,10 +78,19 @@ export function CreateAccountDrawer() {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
+      {/* Trigger Card */}
       <DrawerTrigger asChild>
         <div className="w-full cursor-pointer">
-          <Card className="hover:shadow-md transition-shadow border-dashed">
-            <CardContent className="flex flex-col items-center justify-center text-muted-foreground h-full pt-5">
+          <Card
+            className="
+              h-48 flex items-center justify-center
+              hover:shadow-lg hover:-translate-y-1 transition-all duration-200
+              border-dashed border-zinc-300 dark:border-zinc-700
+              bg-white dark:bg-zinc-900
+              rounded-2xl
+            "
+          >
+            <CardContent className="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400">
               <Plus className="h-10 w-10 mb-2" />
               <p className="text-sm font-medium">Add New Account</p>
             </CardContent>
@@ -89,16 +98,20 @@ export function CreateAccountDrawer() {
         </div>
       </DrawerTrigger>
 
+      {/* Drawer */}
       <DrawerContent className="flex flex-col max-h-[85vh] lg:max-w-lg lg:mx-auto rounded-t-2xl">
-        <DrawerHeader>
-          <DrawerTitle>Create New Account</DrawerTitle>
+        <DrawerHeader className="px-6 pt-6">
+          <DrawerTitle className="text-xl font-semibold">
+            Create New Account
+          </DrawerTitle>
           <DrawerDescription>
-            Fill in the details below to create a new account.
+            Add a new account to track your finances.
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className="flex-1 px-4 pb-4">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="flex-1 px-6 pb-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            {/* Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Account Name */}
               <div className="space-y-2">
@@ -113,7 +126,7 @@ export function CreateAccountDrawer() {
               </div>
 
               {/* Account Type */}
-              <div className="space-y-2 ml-10">
+              <div className="space-y-2">
                 <label className="text-sm font-medium">Account Type</label>
                 <Select
                   onValueChange={(value) => setValue("type", value)}
@@ -148,12 +161,12 @@ export function CreateAccountDrawer() {
             </div>
 
             {/* Default Switch */}
-            <div className="flex items-center justify-between rounded-lg border p-3">
+            <div className="flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 p-4">
               <div>
-                <label className="text-base font-medium cursor-pointer">
+                <label className="text-sm font-medium cursor-pointer">
                   Set as Default
                 </label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   This account will be selected by default
                 </p>
               </div>
@@ -164,16 +177,15 @@ export function CreateAccountDrawer() {
             </div>
 
             {/* Actions */}
-            <div className="flex gap-4 pt-4">
+            <div className="flex gap-3 pt-2">
               <DrawerClose asChild>
-                <Button type="button" variant="destructive" className="flex-1">
+                <Button type="button" variant="outline" className="flex-1">
                   Cancel
                 </Button>
               </DrawerClose>
 
               <Button
                 type="submit"
-                variant="success"
                 className="flex-1"
                 disabled={createAccountLoading}
               >
