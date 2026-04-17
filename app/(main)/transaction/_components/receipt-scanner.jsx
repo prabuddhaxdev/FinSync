@@ -64,10 +64,12 @@ export function ReceiptScanner({ onScanComplete }) {
         onClick={() => fileInputRef.current?.click()}
         disabled={scanReceiptLoading}
         className={cn(
-          "w-full",
-          "bg-green-600 hover:bg-green-700 text-white",
-          "dark:bg-green-400 dark:text-black dark:hover:bg-green-500",
-          "focus-visible:ring-green-600 dark:focus-visible:ring-green-400",
+          "w-full h-10 text-white hover:text-white border-0",
+          "bg-gradient-to-r from-emerald-500 via-green-500 to-lime-500",
+          "bg-[length:200%_200%] animate-gradient",
+          "transition-opacity hover:opacity-90",
+          "shadow-lg shadow-green-500/30",
+          "dark:from-green-400 dark:via-emerald-400 dark:to-lime-300",
         )}
       >
         {scanReceiptLoading ? (

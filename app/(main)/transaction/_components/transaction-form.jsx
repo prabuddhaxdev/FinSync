@@ -135,104 +135,104 @@ export function AddTransactionForm({
       >
         {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />}
 
-{/* UPDATED GRID */}
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-  {/* Type */}
-  <div className="space-y-2">
-    <label className="text-sm font-medium">Type</label>
-    <Select
-      onValueChange={(value) => setValue("type", value)}
-      defaultValue={type}
-    >
-      <SelectTrigger className="w-full h-10">
-        <SelectValue placeholder="Select type" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="EXPENSE">Expense</SelectItem>
-        <SelectItem value="INCOME">Income</SelectItem>
-      </SelectContent>
-    </Select>
-  </div>
+        {/* UPDATED GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+          {/* Type */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Type</label>
+            <Select
+              onValueChange={(value) => setValue("type", value)}
+              defaultValue={type}
+            >
+              <SelectTrigger className="w-full h-10">
+                <SelectValue placeholder="Select type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="EXPENSE">Expense</SelectItem>
+                <SelectItem value="INCOME">Income</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-  {/* Category */}
-  <div className="space-y-2">
-    <label className="text-sm font-medium">Category</label>
-    <Select
-      onValueChange={(value) => setValue("category", value)}
-      defaultValue={getValues("category")}
-    >
-      <SelectTrigger className="w-full h-10">
-        <SelectValue placeholder="Select category" />
-      </SelectTrigger>
-      <SelectContent>
-        {filteredCategories.map((category) => (
-          <SelectItem key={category.id} value={category.id}>
-            {category.name}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  </div>
+          {/* Category */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Category</label>
+            <Select
+              onValueChange={(value) => setValue("category", value)}
+              defaultValue={getValues("category")}
+            >
+              <SelectTrigger className="w-full h-10">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                {filteredCategories.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-  {/* Account */}
-  <div className="space-y-2">
-    <label className="text-sm font-medium">Account</label>
-    <Select
-      onValueChange={(value) => setValue("accountId", value)}
-      defaultValue={getValues("accountId")}
-    >
-      <SelectTrigger className="w-full h-10">
-        <SelectValue placeholder="Select account" />
-      </SelectTrigger>
+          {/* Account */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Account</label>
+            <Select
+              onValueChange={(value) => setValue("accountId", value)}
+              defaultValue={getValues("accountId")}
+            >
+              <SelectTrigger className="w-full h-10">
+                <SelectValue placeholder="Select account" />
+              </SelectTrigger>
 
-      <SelectContent>
-        {accounts.map((account) => (
-          <SelectItem key={account.id} value={account.id}>
-            {account.name} (${parseFloat(account.balance).toFixed(2)})
-          </SelectItem>
-        ))}
+              <SelectContent>
+                {accounts.map((account) => (
+                  <SelectItem key={account.id} value={account.id}>
+                    {account.name} (${parseFloat(account.balance).toFixed(2)})
+                  </SelectItem>
+                ))}
 
-        <div className="border-t mt-1 pt-1">
-          <CreateAccountDrawer>
-            <div className="flex items-center justify-center text-xs text-green-600 dark:text-green-400 cursor-pointer py-1 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-md transition">
-              + New Account
-            </div>
-          </CreateAccountDrawer>
+                <div className="border-t mt-1 pt-1">
+                  <CreateAccountDrawer>
+                    <div className="flex items-center justify-center text-xs text-green-600 dark:text-green-400 cursor-pointer py-1 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-md transition">
+                      + New Account
+                    </div>
+                  </CreateAccountDrawer>
+                </div>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Date */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Date</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "w-full h-10 justify-between font-normal",
+                    !date && "text-muted-foreground",
+                  )}
+                >
+                  {date ? format(date, "PPP") : "Pick a date"}
+                  <CalendarIcon className="h-4 w-4 opacity-60" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={(date) => setValue("date", date)}
+                  disabled={(date) =>
+                    date > new Date() || date < new Date("1900-01-01")
+                  }
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
-      </SelectContent>
-    </Select>
-  </div>
-
-  {/* Date */}
-  <div className="space-y-2">
-    <label className="text-sm font-medium">Date</label>
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn(
-            "w-full h-10 justify-between font-normal",
-            !date && "text-muted-foreground"
-          )}
-        >
-          {date ? format(date, "PPP") : "Pick a date"}
-          <CalendarIcon className="h-4 w-4 opacity-60" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={(date) => setValue("date", date)}
-          disabled={(date) =>
-            date > new Date() || date < new Date("1900-01-01")
-          }
-          initialFocus
-        />
-      </PopoverContent>
-    </Popover>
-  </div>
-</div>
 
         {/* Description */}
         <div className="space-y-2">
@@ -292,6 +292,7 @@ export function AddTransactionForm({
 
           <Button
             type="submit"
+            variant="success"
             disabled={transactionLoading}
             className="w-full bg-green-600 hover:bg-green-700 text-white dark:bg-green-400 dark:text-black"
           >
