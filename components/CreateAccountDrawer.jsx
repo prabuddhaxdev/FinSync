@@ -31,8 +31,16 @@ import { Switch } from "@/components/ui/switch";
 import { createAccount } from "@/actions/dashboard";
 import { accountSchema } from "@/app/lib/schema";
 
-export function CreateAccountDrawer() {
-  const [open, setOpen] = useState(false);
+export function CreateAccountDrawer({
+  children,
+  onAccountCreated,
+  open: controlledOpen,
+  onOpenChange,
+}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+
+  const open = controlledOpen ?? internalOpen;
+  const setOpen = onOpenChange ?? setInternalOpen;
 
   const {
     register,
@@ -52,7 +60,7 @@ export function CreateAccountDrawer() {
   });
 
   const {
-    loading: createAccountLoading,
+    loading,
     fn: createAccountFn,
     error,
     data: newAccount,
@@ -64,11 +72,14 @@ export function CreateAccountDrawer() {
 
   useEffect(() => {
     if (newAccount) {
-      toast.success("Account created successfully");
+      toast.success("Account created");
+
+      onAccountCreated?.(newAccount);
+
       reset();
       setOpen(false);
     }
-  }, [newAccount, reset]);
+  }, [newAccount]);
 
   useEffect(() => {
     if (error) {
@@ -78,124 +89,66 @@ export function CreateAccountDrawer() {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      {/* Trigger Card */}
-      <DrawerTrigger asChild>
-        <div className="w-full cursor-pointer">
-          <Card
-            className="
-              h-48 flex items-center justify-center
-              hover:shadow-lg hover:-translate-y-1 transition-all duration-200
-              border-dashed border-zinc-300 dark:border-zinc-700
-              bg-white dark:bg-zinc-900
-              rounded-2xl
-            "
-          >
-            <CardContent className="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400">
-              <Plus className="h-10 w-10 mb-2" />
-              <p className="text-sm font-medium">Add New Account</p>
-            </CardContent>
-          </Card>
-        </div>
-      </DrawerTrigger>
+      {/* Trigger (only if children passed) */}
+      {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
 
-      {/* Drawer */}
-      <DrawerContent className="flex flex-col max-h-[85vh] lg:max-w-lg lg:mx-auto rounded-t-2xl">
-        <DrawerHeader className="px-6 pt-6">
-          <DrawerTitle className="text-xl font-semibold">
-            Create New Account
-          </DrawerTitle>
+      <DrawerContent className="max-h-[85vh] lg:max-w-lg lg:mx-auto rounded-t-2xl">
+        <DrawerHeader>
+          <DrawerTitle>Create Account</DrawerTitle>
           <DrawerDescription>
-            Add a new account to track your finances.
+            Add a new account to track your finances
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className="flex-1 px-6 pb-6">
+        <div className="px-6 pb-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Account Name */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Account Name</label>
-                <Input
-                  placeholder="e.g., Main Checking"
-                  {...register("name")}
-                />
-                {errors.name && (
-                  <p className="text-sm text-red-500">{errors.name.message}</p>
-                )}
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Input placeholder="Account name" {...register("name")} />
 
-              {/* Account Type */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Account Type</label>
-                <Select
-                  onValueChange={(value) => setValue("type", value)}
-                  value={watch("type")}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="CURRENT">Current</SelectItem>
-                    <SelectItem value="SAVINGS">Savings</SelectItem>
-                  </SelectContent>
-                </Select>
-                {errors.type && (
-                  <p className="text-sm text-red-500">{errors.type.message}</p>
-                )}
-              </div>
+              <Select
+                onValueChange={(v) => setValue("type", v)}
+                value={watch("type")}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="CURRENT">Current</SelectItem>
+                  <SelectItem value="SAVINGS">Savings</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            {/* Balance */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Initial Balance</label>
-              <Input
-                type="number"
-                step="0.01"
-                placeholder="0.00"
-                {...register("balance")}
-              />
-              {errors.balance && (
-                <p className="text-sm text-red-500">{errors.balance.message}</p>
-              )}
-            </div>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="Initial balance"
+              {...register("balance")}
+            />
 
-            {/* Default Switch */}
-            <div className="flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 p-4">
-              <div>
-                <label className="text-sm font-medium cursor-pointer">
-                  Set as Default
-                </label>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  This account will be selected by default
-                </p>
-              </div>
+            <div className="flex items-center justify-between border p-3 rounded-lg">
+              <span className="text-sm">Set as default</span>
               <Switch
                 checked={watch("isDefault")}
-                onCheckedChange={(checked) => setValue("isDefault", checked)}
+                onCheckedChange={(v) => setValue("isDefault", v)}
               />
             </div>
 
-            {/* Actions */}
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3">
               <DrawerClose asChild>
-                <Button type="button" variant="outline" className="flex-1">
+                <Button variant="outline" className="flex-1">
                   Cancel
                 </Button>
               </DrawerClose>
 
-              <Button
-                type="submit"
-                className="flex-1"
-                disabled={createAccountLoading}
-              >
-                {createAccountLoading ? (
+              <Button type="submit" className="flex-1" disabled={loading}>
+                {loading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                     Creating...
                   </>
                 ) : (
-                  "Create Account"
+                  "Create"
                 )}
               </Button>
             </div>

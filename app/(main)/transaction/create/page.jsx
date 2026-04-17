@@ -4,13 +4,12 @@ import { getUserAccounts } from "@/actions/dashboard";
 import { defaultCategories } from "@/data/categories";
 
 export default async function AddTransactionPage({ searchParams }) {
-  const editId = searchParams?.edit;
+  const { edit: editId } = await searchParams;
 
   // fetch accounts
   const accounts = await getUserAccounts();
 
   let initialData = null;
-
 
   if (editId) {
     const transaction = await getTransaction(editId);
@@ -34,7 +33,7 @@ export default async function AddTransactionPage({ searchParams }) {
 
       <AddTransactionForm
         accounts={accounts}
-        categories={defaultCategories} 
+        categories={defaultCategories}
         editMode={!!editId}
         initialData={initialData}
       />
