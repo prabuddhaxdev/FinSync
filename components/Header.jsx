@@ -7,9 +7,7 @@ import { ModeToggle } from "./mode-toggle";
 
 const Header = () => {
   return (
-    <header
-      className="fixed top-0 w-full z-50 backdrop-blur-xl"
-    >
+    <header className="fixed top-0 w-full z-50 backdrop-blur-xl">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
@@ -88,10 +86,20 @@ transition font-medium"
               <Button
                 variant="outline"
                 className="border-emerald-500/40 text-emerald-600 
-                hover:bg-emerald-500/10 hover:border-emerald-500 
-                dark:text-emerald-400 dark:border-emerald-400/40"
+      hover:bg-emerald-500/10 hover:border-emerald-500 
+      dark:text-emerald-400 dark:border-emerald-400/40"
               >
                 Login
+              </Button>
+            </SignInButton>
+
+            <SignInButton forceRedirectUrl="/dashboard">
+              <Button
+                className="bg-gradient-to-r from-emerald-500 to-green-500 
+      hover:from-emerald-600 hover:to-green-600 
+      text-white shadow-md hover:shadow-emerald-500/20"
+              >
+                Get Started
               </Button>
             </SignInButton>
           </Show>
