@@ -1,4 +1,7 @@
+
 # 💸 FinSync AI — Full Stack AI Finance Platform
+<img width="1555" height="817" alt="Screenshot 2026-04-20 004908" src="https://github.com/user-attachments/assets/8c427f16-17e6-417e-b79b-a68dfcf9823a" />
+
 
 ## 🚀 Overview
 
@@ -79,24 +82,14 @@ Whether you're managing daily expenses, tracking investments, or analyzing spend
 * Protected routes and sessions
 * Rate limiting using Arcjet
 
-### 📱 Responsive UI
+<img width="1181" height="760" alt="Screenshot 2026-04-20 005059" src="https://github.com/user-attachments/assets/f330fb1c-95a1-467a-bb0b-7ad2c07fcedc" />
 
-* Fully responsive across devices
-* Dark mode optimized design
-* Smooth animations and transitions
+<img width="1690" height="761" alt="Screenshot 2026-04-20 005130" src="https://github.com/user-attachments/assets/3c566506-1a51-40fc-bf49-4ae5b53d9fe2" />
 
----
-
-## 🧩 Use Cases
-
-💸 Personal expense tracking
-📊 Financial analytics & insights
-🧾 Receipt-based expense logging
-📈 Budget planning & optimization
-🏦 Multi-account money management
-📬 Automated financial reporting
+<img width="1165" height="575" alt="Screenshot 2026-04-20 005144" src="https://github.com/user-attachments/assets/594b8366-961d-4ddd-b27c-91e0ec98aa77" />
 
 ---
+
 
 ## 🛠️ Tech Stack
 
@@ -130,13 +123,14 @@ Whether you're managing daily expenses, tracking investments, or analyzing spend
 
 ---
 
-## 📸 UI Highlights
 
-* ✨ Clean dark-themed dashboard
-* 📊 Insightful charts and analytics
-* 🧾 AI-powered receipt scanning UI
-* 📁 Advanced transaction table with filters
-* 💡 Smooth and modern UX
+## 📈 Future Enhancements
+
+* 🤖 AI financial insights & recommendations
+* 📊 Advanced analytics dashboard
+* 🌍 Multi-currency support
+* 📱 Mobile app (React Native)
+* 🔔 Push notifications
 
 ---
 
@@ -182,22 +176,7 @@ npm run inngest:dev
 
 ---
 
-## 📦 Build
 
-```bash
-npm run build
-npm start
-```
-
----
-
-## 📈 Future Enhancements
-
-* 🤖 AI financial insights & recommendations
-* 📊 Advanced analytics dashboard
-* 🌍 Multi-currency support
-* 📱 Mobile app (React Native)
-* 🔔 Push notifications
 
 
 
