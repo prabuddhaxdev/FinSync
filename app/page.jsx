@@ -17,11 +17,11 @@ const LandingPage = () => {
       {/* Features */}
       <section id="features" className="py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 tracking-tight text-zinc-900 dark:text-white">
+          <h2 className="text-4xl lg:text-6xl font-bold text-center mb-4 tracking-tight text-zinc-900 dark:text-white">
             Smart Expense Tracking ,{" "}
             <span className="text-green-500">Simplified</span>
           </h2>
-          <p className="text-center text-zinc-600 dark:text-zinc-400 mb-12 max-w-2xl mx-auto text-lg">
+          <p className="text-center text-zinc-600 dark:text-zinc-400 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
             Transform how you manage expenses with AI-powered receipt scanning,
             real-time insights, and seamless transaction tracking.
           </p>
@@ -51,15 +51,15 @@ const LandingPage = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-green-500/10 via-transparent to-transparent dark:from-green-400/10" />
 
         {/* ✨ Center Content */}
-        <div className="max-w-3xl mx-auto text-center px-4 mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
+        <div className="text-4xl md:text-5xl lg:text-6xl mx-auto text-center px-4 mb-16">
+          <h2 className="font-bold tracking-tight text-zinc-900 dark:text-white">
             Intelligent{" "}
             <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
               Receipt Processing
             </span>
           </h2>
 
-          <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="mt-4 max-w-3xl mx-auto text-lg text-zinc-600 dark:text-zinc-400">
             Transform any receipt into structured data instantly with our
             advanced AI technology. No more manual typing, no more errors—just
             intelligent automation.
@@ -128,7 +128,7 @@ const LandingPage = () => {
 
                 <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
 
-                <p className="text-zinc-600 dark:text-zinc-400 text-sm">
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base">
                   {step.description}
                 </p>
               </div>
@@ -140,11 +140,11 @@ const LandingPage = () => {
       {/* CTA */}
       <section className="py-20 bg-green-600 dark:bg-green-500 rounded-xl">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Ready to Take Control of Your Finances?
           </h2>
 
-          <p className="text-green-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-green-100 md:text-lg mb-8 max-w-2xl mx-auto">
             Join thousands of users who are already managing their finances
             smarter with FinSync
           </p>

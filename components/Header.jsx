@@ -11,7 +11,7 @@ const Header = () => {
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <h1 className="text-2xl font-extrabold tracking-tight">
+          <h1 className="text-2xl font-extrabold tracking-tight mr-2 md:mr-0">
             <span className="bg-gradient-to-r from-emerald-500 to-green-400 bg-clip-text text-transparent">
               Fin
             </span>
@@ -40,7 +40,7 @@ transition font-medium"
         </div>
 
         {/* Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           <Show when="signed-in">
             {/* Dashboard Button */}
             <Link href="/dashboard">
