@@ -47,7 +47,7 @@ const LandingPage = () => {
       </section>
 
       {/* Stats */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative md:py-18 py-10 overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-green-500/10 via-transparent to-transparent dark:from-green-400/10" />
 
         {/* ✨ Center Content */}
@@ -66,9 +66,8 @@ const LandingPage = () => {
           </p>
         </div>
 
-        {/* 📊 Stats */}
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
 
@@ -98,7 +97,7 @@ const LandingPage = () => {
                     </div>
 
                     {/* Number */}
-                    <div className="text-4xl md:text-5xl font-bold text-green-400 tracking-tight tabular-nums">
+                    <div className="text-3xl md:text-5xl font-bold text-green-400 tracking-tight tabular-nums">
                       {stat.number}
                     </div>
 
@@ -115,7 +114,7 @@ const LandingPage = () => {
       </section>
 
       {/* How it works */}
-      <section className="py-20 bg-zinc-50 dark:bg-zinc-800/50">
+      <section className="py-16 bg-zinc-50 dark:bg-zinc-900/50">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">How It Works</h2>
 
