@@ -230,6 +230,34 @@ export function TransactionTable({ transactions }) {
     toast.success("CSV downloaded");
   };
 
+  const downloadJSON = () => {
+    const data = selectedTransactions.map((t) => ({
+      id: t.id,
+      date: format(new Date(t.date), "yyyy-MM-dd"),
+      description: t.description,
+      category: t.category,
+      amount: t.amount,
+      type: t.type,
+      isRecurring: t.isRecurring,
+      recurringInterval: t.recurringInterval || null,
+    }));
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "transactions.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+    toast.success("JSON downloaded");
+  };
+
 const downloadPDF = () => {
   const doc = new jsPDF();
 
@@ -294,7 +322,8 @@ const downloadPDF = () => {
 
     if (type === "csv") downloadCSV();
     if (type === "pdf") downloadPDF();
-      if (type === "xls") downloadXLS();
+    if (type === "xls") downloadXLS();
+    if (type === "json") downloadJSON();
   };
 
   return (
@@ -352,8 +381,9 @@ const downloadPDF = () => {
 
                 <SelectContent>
                   <SelectItem value="csv">Download CSV</SelectItem>
-                  <SelectItem value="pdf">Download PDF</SelectItem>
                   <SelectItem value="xls">Download Excel</SelectItem>
+                  <SelectItem value="pdf">Download PDF</SelectItem>
+                  <SelectItem value="json">Download JSON</SelectItem>
                 </SelectContent>
               </Select>
             </>
