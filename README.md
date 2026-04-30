@@ -127,9 +127,10 @@ Whether you're managing daily expenses, tracking investments, or analyzing spend
 ## 📈 Future Enhancements
 
 * 🤖 AI financial insights & recommendations
-* 📊 Advanced analytics dashboard
+* 🎯 Goals Tracker
 * 🌍 Multi-currency support
-* 📱 Mobile app (React Native)
+* 💹 Budget for each categories
+* 📊 Advanced analytics dashboard
 * 🔔 Push notifications
 
 ---
