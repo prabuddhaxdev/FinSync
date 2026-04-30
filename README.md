@@ -41,7 +41,7 @@ Whether you're managing daily expenses, tracking investments, or analyzing spend
 * Add, edit, and delete transactions
 * Categorize expenses (food, travel, utilities, etc.)
 * Search, filter, and sort transactions
-* Bulk actions and export (CSV, PDF, Excel)
+* Bulk actions and export (CSV, PDF, Excel, JSON)
 
 ### 🔁 Recurring Transactions
 
@@ -49,9 +49,9 @@ Whether you're managing daily expenses, tracking investments, or analyzing spend
 * Custom schedules (daily, monthly, etc.)
 * Hands-free financial tracking
 
-### 📤 Export Transactions (CSV / PDF / Excel)
+### 📤 Export Transactions (CSV / PDF / Excel / JSON)
 
-* Export transactions in CSV, PDF, and Excel formats
+* Export transactions in CSV, PDF, JSON and Excel formats
 * One-click bulk export for selected entries
 * Apply filters before exporting (date, type, category, recurring)
 * Clean, structured data ready for analysis
