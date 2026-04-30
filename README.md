@@ -1,5 +1,5 @@
 
-# 💸 FinSync AI — Full Stack AI Finance Platform
+# 💸 FinSync AI — AI Finance Platform
 <img width="1555" height="817" alt="Screenshot 2026-04-20 004908" src="https://github.com/user-attachments/assets/8c427f16-17e6-417e-b79b-a68dfcf9823a" />
 
 
